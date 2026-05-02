@@ -11,5 +11,14 @@
                     'SUMMER'
             ELSE 
                 'FALL'
-        END AS SEASON     
+        END    
 {% endmacro %}
+{% macro datetype(ds)%}
+        CASE 
+            WHEN DAYNAME(TO_TIMESTAMP({{ds}})) IN ('Sat','Sun')
+                THEN
+                    'WEEKEND'
+                ELSE
+                    'BUSINESS'
+        END
+{% endmacro%}

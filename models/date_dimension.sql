@@ -4,15 +4,9 @@ WITH common_table_exp AS (
         DATE(TO_TIMESTAMP(STARTED_AT) ) AS DATE_STARTED_AT,
         HOUR(TO_TIMESTAMP(STARTED_AT) ) AS HOUR_STARTED_AT,
 
-        CASE 
-            WHEN DAYNAME(TO_TIMESTAMP(STARTED_AT)) IN ('sat','sun')
-                THEN
-                    'WEEKEND'
-                ELSE
-                    'BUSINESS'
-        END AS DATE_TYPE,
+    {{datetype('STARTED_AT')}} AS DATE_TYPE,
 
-    {{season('STARTED_AT')}}
+    {{season('STARTED_AT')}} AS STATION_OF_YEAR
 
     FROM ({{ source('demo', 'bike') }})
 )
