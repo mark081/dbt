@@ -8,7 +8,7 @@ WITH common_table_exp AS (
 
     {{season('STARTED_AT')}} AS STATION_OF_YEAR
 
-    FROM ({{ source('demo', 'bike') }})
+from {{ ref('stage_bike') }}
 )
 
 SELECT * from common_table_exp
